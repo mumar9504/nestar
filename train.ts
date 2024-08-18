@@ -1,41 +1,37 @@
 console.log("TRAIN AREA!");
 
 // ==============================================================
-// ----------------------- ZJ-TASK start -------------------------
+// ----------------------- ZK-TASK start -------------------------
 // ==============================================================
 
-// TASK ZJ:
+// TASK ZK:
 
-// Shunday function yozing, u berilgan array ichidagi
-// raqamlarni qiymatini hisoblab qaytarsin.
+// Shunday function yozing, bu function har soniyada bir marotaba
+// console'ga 1'dan 5'gacha bo'lgan raqamlarni chop etsin va
+// 5 soniyadan so'ng function o'z ishini to'xtatsin
+  
+// MASALAN: printNumbers();
 
-// MASALAN: reduceNestedArray([1, [1, 2, [4]]]); return 8;
+function printNumbers() {
+  let currentNumber = 1; // Hozirgi raqamni 1 ga teng qilib boshlaymiz.
 
-// Yuqoridagi misolda, array nested bo'lgan holdatda ham,
-// bizning function ularning yig'indisini hisoblab qaytarmoqda.
-   
+  // Har soniyada bir marta ushbu funksiya ishga tushadi.
+  const intervalId = setInterval(() => {
+      console.log(currentNumber); // Hozirgi raqamni console'ga chop etamiz.
+      currentNumber++; // Raqamni birga oshiramiz.
 
-function reduceNestedArray(arr: (number | any[])[]): number {
-  let sum = 0; // Yig'indini saqlash uchun o'zgaruvchi
-
-  for (let element of arr) {
-    if (Array.isArray(element)) {
-      // Agar element yana array bo'lsa, uni qayta funksiya ichiga yuboramiz
-      sum += reduceNestedArray(element);
-    } else {
-      // Agar element oddiy son bo'lsa, uni yig'indiga qo'shamiz
-      sum += element;
-    }
-  }
-
-  return sum; // Yig'indini qaytaramiz
+      // Agar raqam 6 ga teng bo'lsa, intervalni to'xtatamiz.
+      if (currentNumber > 5) {
+          clearInterval(intervalId); // Bu kod intervalni to'xtatadi.
+      }
+  }, 1000); // Bu yerda 1000 millisekund (ya'ni, 1 sekund) vaqt oralig'i ko'rsatilgan.
 }
 
-const result = reduceNestedArray([1, [1, 2, [4]]]);
-console.log(result); // 8
+// Funksiyani chaqiramiz:
+printNumbers();
 
 
 
 // ==============================================================
-// ------------------------ ZJ-TASK stop -------------------------
+// ------------------------ ZK-TASK stop -------------------------
 // ==============================================================
