@@ -1,26 +1,38 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { MemberService } from './member.service';
-import { UsePipes, ValidationPipe } from '@nestjs/common';
-import { LoginInput, MemberInput } from '../../libs/dto/member/member.input';
+import { InternalServerErrorException, UsePipes, ValidationPipe } from '@nestjs/common';
+import { LoginInput, MemberInput } from '../../libs/dto/member/member.input.dto';
+import { Member } from '../../libs/dto/member/member';
 
 @Resolver()
 export class MemberResolver {
 	constructor(private readonly memberService: MemberService) {}
 
-	@Mutation(() => String)
-	@UsePipes(ValidationPipe) // ValidationPipe - xato ma'lumotlarni tekshirib ularni log qilishga o'tkazmaydi ya'ni himoyalaydi 
-	public async signup(@Args('input') input: MemberInput): Promise<string> {
-		console.log('Mutation: signup');
-		console.log('input:', input);
+	@Mutation(() => Member)
+	@UsePipes(ValidationPipe) // ValidationPipe - xato ma'lumotlarni tekshiradi va ularni log qilishga o'tkazmaydi ya'ni himoyalaydi
+	public async signup(@Args('input') input: MemberInput): Promise<Member> {
+		try {
+			console.log('Mutation: signup');
+			console.log('input:', input);
 
-		return this.memberService.signup();
+			return this.memberService.signup(input);
+		} catch (err) {
+			console.log('Error, signup:', err);
+			throw new InternalServerErrorException(err);
+		}
 	}
 
 	@Mutation(() => String)
-  @UsePipes(ValidationPipe)
+	@UsePipes(ValidationPipe)
 	public async login(@Args('input') input: LoginInput): Promise<string> {
-		console.log('Mutation: login');
-		return this.memberService.login();
+		try {
+			console.log('Mutation: login');
+
+			return this.memberService.login();
+		} catch (err) {
+			console.log('Error, login:', err);
+			throw new InternalServerErrorException(err);
+		}
 	}
 
 	@Mutation(() => String)
