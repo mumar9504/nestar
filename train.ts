@@ -1,37 +1,32 @@
 console.log("TRAIN AREA!");
 
 // ==============================================================
-// ----------------------- ZK-TASK start -------------------------
+// ----------------------- ZL-TASK start -------------------------
 // ==============================================================
 
-// TASK ZK:
+// TASK ZL:
 
-// Shunday function yozing, bu function har soniyada bir marotaba
-// console'ga 1'dan 5'gacha bo'lgan raqamlarni chop etsin va
-// 5 soniyadan so'ng function o'z ishini to'xtatsin
-  
-// MASALAN: printNumbers();
+// Shunday function yozing, u parametrda berilgan stringni 
+// kebab casega otkazib qaytarsin. Bosh harflarni 
+// kichik harflarga ham otkazsin.
+// MASALAN: stringToKebab(“I love Kebab”) return “i-love-kebab”
 
-function printNumbers() {
-  let currentNumber = 1; // Hozirgi raqamni 1 ga teng qilib boshlaymiz.
+function stringToKebab(input: string): string {
+  // Barcha harflarni kichik harflarga o‘tkazamiz.
+  let lowerCaseString = input.toLowerCase();
 
-  // Har soniyada bir marta ushbu funksiya ishga tushadi.
-  const intervalId = setInterval(() => {
-      console.log(currentNumber); // Hozirgi raqamni console'ga chop etamiz.
-      currentNumber++; // Raqamni birga oshiramiz.
+  // Bo‘sh joylarni (probel) tirega (-) almashtiramiz.
+  let kebabCaseString = lowerCaseString.replace(/ /g, '-');
 
-      // Agar raqam 6 ga teng bo'lsa, intervalni to'xtatamiz.
-      if (currentNumber > 5) {
-          clearInterval(intervalId); // Bu kod intervalni to'xtatadi.
-      }
-  }, 1000); // Bu yerda 1000 millisekund (ya'ni, 1 sekund) vaqt oralig'i ko'rsatilgan.
+  // Natijani qaytaramiz.
+  return kebabCaseString;
 }
 
-// Funksiyani chaqiramiz:
-printNumbers();
+let result = stringToKebab("I love Kebab");
+console.log(result); // "i-love-kebab" 
 
 
 
 // ==============================================================
-// ------------------------ ZK-TASK stop -------------------------
+// ------------------------ ZL-TASK stop -------------------------
 // ==============================================================
