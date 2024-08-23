@@ -1,32 +1,38 @@
 console.log("TRAIN AREA!");
 
 // ==============================================================
-// ----------------------- ZL-TASK start -------------------------
+// ----------------------- ZM-TASK start -------------------------
 // ==============================================================
 
-// TASK ZL:
+// TASK ZM:
 
-// Shunday function yozing, u parametrda berilgan stringni 
-// kebab casega otkazib qaytarsin. Bosh harflarni 
-// kichik harflarga ham otkazsin.
-// MASALAN: stringToKebab(“I love Kebab”) return “i-love-kebab”
+// Shunday function yozing, va bu function parametr
+// sifatida raqamlarni qabul qilsin. Bu function qabul qilingan
+// raqamlarni orqasiga o'girib qaytarsin
 
-function stringToKebab(input: string): string {
-  // Barcha harflarni kichik harflarga o‘tkazamiz.
-  let lowerCaseString = input.toLowerCase();
+// MASALAN: reverseInteger(123456789); return 987654321;
 
-  // Bo‘sh joylarni (probel) tirega (-) almashtiramiz.
-  let kebabCaseString = lowerCaseString.replace(/ /g, '-');
+// Yuqoridagi misolda, function kiritilgan raqamlarni orqasiga
+// o'girib (reverse) qilib qaytarmoqda.
 
-  // Natijani qaytaramiz.
-  return kebabCaseString;
+function reverseInteger(num: number): number {
+  // Raqamni stringga o‘tkazamiz.
+  let numString = num.toString();
+
+  // Stringni orqasiga o‘giramiz.
+  let reversedString = numString.split('').reverse().join('');
+
+  // Orqaga o‘girgan stringni qayta raqamga o‘tkazamiz.
+  let reversedNumber = parseInt(reversedString, 10);
+
+  return reversedNumber;
 }
 
-let result = stringToKebab("I love Kebab");
-console.log(result); // "i-love-kebab" 
+let result = reverseInteger(123456789);
+console.log(result); // 987654321 
 
 
 
 // ==============================================================
-// ------------------------ ZL-TASK stop -------------------------
+// ------------------------ ZM-TASK stop -------------------------
 // ==============================================================
