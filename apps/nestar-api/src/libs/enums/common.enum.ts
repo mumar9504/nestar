@@ -11,7 +11,7 @@ export enum Message {
   BLOCKED_USER = "You have been blocked!",
   WRONG_PASSWORD = "Wrong password, please try again!",
   NOT_AUTHENTICATED = "You are not authenticated, Please login first!",
-  USED_NICK_PHONE = "You are inserting already used nick or phone!",
+  USED_MEMBER_NICK_OR_PHONE = "Already used member nick or phone!",
   TOKEN_CREATION_FAILED = "Token creation error!",
   TOKEN_NOT_EXIST = "Bearer Token is not provided!",
   ONLY_SPECIFIC_ROLES_ALLOWED = "Allowed only for members with specific roles!",
