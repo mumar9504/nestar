@@ -4,32 +4,30 @@ console.log("TRAIN AREA!");
 // ----------------------- ZM-TASK start -------------------------
 // ==============================================================
 
-// TASK ZM:
+// TASK ZN:
 
-// Shunday function yozing, va bu function parametr
-// sifatida raqamlarni qabul qilsin. Bu function qabul qilingan
-// raqamlarni orqasiga o'girib qaytarsin
+// Shunday function yozing, uni array va number parametri bo'lsin.
+// Function'ning vazifasi ikkinchi parametr'da berilgan raqam, birinchi
+// array parametr'ning indeksi bo'yicha hisoblanib, shu indeksgacha bo'lgan
+// raqamlarni indeksdan tashqarida bo'lgan raqamlar bilan o'rnini
+// almashtirib qaytarilsin.
 
-// MASALAN: reverseInteger(123456789); return 987654321;
+// MASALAN: rotateArray([1, 2, 3, 4, 5, 6], 3); return [5, 6, 1, 2, 3, 4];
 
-// Yuqoridagi misolda, function kiritilgan raqamlarni orqasiga
-// o'girib (reverse) qilib qaytarmoqda.
 
-function reverseInteger(num: number): number {
-  // Raqamni stringga o‘tkazamiz.
-  let numString = num.toString();
+function rotateArray(arr: number[], index: number): number[] {
+  // Massivni ikkiga bo'lamiz: indeksgacha bo'lgan va undan keyingi qismlarga.
+  let part1 = arr.slice(0, index); // Indeksgacha bo'lgan qism (boshlanishidan to indeksgacha)
+  let part2 = arr.slice(index); // Indeksdan keyingi qism (indeksdan oxirigacha)
 
-  // Stringni orqasiga o‘giramiz.
-  let reversedString = numString.split('').reverse().join('');
+  // Natijaviy massivni qayta yig'amiz: avval ikkinchi qism, keyin birinchi qism.
+  let result = part2.concat(part1);
 
-  // Orqaga o‘girgan stringni qayta raqamga o‘tkazamiz.
-  let reversedNumber = parseInt(reversedString, 10);
-
-  return reversedNumber;
+  return result;
 }
 
-let result = reverseInteger(123456789);
-console.log(result); // 987654321 
+const natija = rotateArray([1, 2, 3, 4, 5, 6], 3);
+console.log(natija); // [ 4, 5, 6, 1, 2, 3 ]
 
 
 
