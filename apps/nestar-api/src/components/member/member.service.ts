@@ -15,11 +15,12 @@ export class MemberService {
 	) {}
 
 	public async signup(input: MemberInput): Promise<Member> {
-		// TODO: hASH PASSWORD
+		// hASH PASSWORD
 		input.memberPassword = await this.authService.hashPassword(input.memberPassword);
 		try {
 			const result = await this.memberModel.create(input);
-			// TODO: Authentification via Token
+			// Authentification via Token
+			result.accessToken = await this.authService.createToken(result);
 			return result;
 		} catch (err) {
 			console.log('Error, Service.model:', err.message);
@@ -45,7 +46,8 @@ export class MemberService {
 		//console.log('response:', response);
 		const isMatch = await this.authService.comparePasswords(input.memberPassword, response.memberPassword);
 		if (!isMatch) throw new InternalServerErrorException(Message.WRONG_PASSWORD);
-
+		response.accessToken = await this.authService.createToken(response);
+		
 		return response;
 	}
 
