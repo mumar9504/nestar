@@ -1,36 +1,44 @@
 console.log("TRAIN AREA!");
 
 // ==============================================================
-// ----------------------- ZM-TASK start -------------------------
+// ----------------------- ZO-TASK start -------------------------
 // ==============================================================
 
-// TASK ZN:
+//ZO-TASK:
 
-// Shunday function yozing, uni array va number parametri bo'lsin.
-// Function'ning vazifasi ikkinchi parametr'da berilgan raqam, birinchi
-// array parametr'ning indeksi bo'yicha hisoblanib, shu indeksgacha bo'lgan
-// raqamlarni indeksdan tashqarida bo'lgan raqamlar bilan o'rnini
-// almashtirib qaytarilsin.
-
-// MASALAN: rotateArray([1, 2, 3, 4, 5, 6], 3); return [5, 6, 1, 2, 3, 4];
+// Shunday function yozing, u parametrdagi string ichidagi 
+// qavslar miqdori balansda ekanligini aniqlasin. 
+// Ya'ni ochish("(") va yopish(")") qavslar soni bir xil bolishi kerak.
+// MASALAN: areParenthesesBalanced("string()ichida(qavslar)soni()balansda") return true
 
 
-function rotateArray(arr: number[], index: number): number[] {
-  // Massivni ikkiga bo'lamiz: indeksgacha bo'lgan va undan keyingi qismlarga.
-  let part1 = arr.slice(0, index); // Indeksgacha bo'lgan qism (boshlanishidan to indeksgacha)
-  let part2 = arr.slice(index); // Indeksdan keyingi qism (indeksdan oxirigacha)
+function areParenthesesBalanced(input: string): boolean {
+  let openCount = 0; // Ochuvchi qavslar soni
+  let closeCount = 0; // Yopuvchi qavslar soni
 
-  // Natijaviy massivni qayta yig'amiz: avval ikkinchi qism, keyin birinchi qism.
-  let result = part2.concat(part1);
+  // Stringni har bir belgisi bo'yicha aylanamiz
+  for (let i = 0; i < input.length; i++) {
+      let char = input[i];
+      
+      // Agar ochuvchi qavs bo'lsa, openCount ni oshiramiz
+      if (char === '(') {
+          openCount++;
+      }
+      // Agar yopuvchi qavs bo'lsa, closeCount ni oshiramiz
+      else if (char === ')') {
+          closeCount++;
+      }
+  }
 
-  return result;
+  // Agar ochuvchi va yopuvchi qavslar soni bir xil bo'lsa, true qaytaradi
+  return openCount === closeCount;
 }
 
-const natija = rotateArray([1, 2, 3, 4, 5, 6], 3);
-console.log(natija); // [ 4, 5, 6, 1, 2, 3 ]
+const natija = areParenthesesBalanced("string()ichida(qavslar)soni()balansda");
+console.log(natija); // true
 
 
 
 // ==============================================================
-// ------------------------ ZM-TASK stop -------------------------
+// ------------------------ ZO-TASK stop -------------------------
 // ==============================================================
