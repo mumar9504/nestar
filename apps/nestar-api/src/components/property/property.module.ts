@@ -8,7 +8,7 @@ import { ViewModule } from '../view/view.module';
 import { MemberModule } from '../member/member.module';
 
 @Module({
-  imports: [
+	imports: [
 		MongooseModule.forFeature([
 			{
 				name: 'Property',
@@ -19,6 +19,6 @@ import { MemberModule } from '../member/member.module';
 		ViewModule,
 		MemberModule,
 	],
-  providers: [PropertyResolver, PropertyService]
+	providers: [PropertyResolver, PropertyService],
 })
 export class PropertyModule {}
