@@ -1,44 +1,50 @@
 console.log("TRAIN AREA!");
 
 // ==============================================================
-// ----------------------- ZO-TASK start -------------------------
+// ----------------------- ZP-TASK start -------------------------
 // ==============================================================
 
-//ZO-TASK:
+// 2024-08-30
+// MIT 14
 
-// Shunday function yozing, u parametrdagi string ichidagi 
-// qavslar miqdori balansda ekanligini aniqlasin. 
-// Ya'ni ochish("(") va yopish(")") qavslar soni bir xil bolishi kerak.
-// MASALAN: areParenthesesBalanced("string()ichida(qavslar)soni()balansda") return true
+// TASK ZP:
+
+// shunday function yozing, u 2 ta array parametr qabul qilsin.
+// Siz bu ikki arrayning qiymatlari o'xshash bo'lishini 
+// (ya'ni, ularning barcha elementlari bir xil bo'lishini) tekshirishingiz kerak.
+
+// MASALAN:
+// areArraysEqual([1, 2, 3], [3, 1, 2]) // true
+// areArraysEqual([1, 2, 3], [3, 1, 2, 1]) // false
+// areArraysEqual([1, 2, 3], [4, 1, 2]) // false
 
 
-function areParenthesesBalanced(input: string): boolean {
-  let openCount = 0; // Ochuvchi qavslar soni
-  let closeCount = 0; // Yopuvchi qavslar soni
+function areArraysEqual(arr1: number[], arr2: number[]): boolean {
+    // Arraylarni nusxasini olish uchun va ularga ta'sir qilmaslik uchun [...arr] yordamida nusxa olamiz
+    const sortedArr1 = [...arr1].sort();
+    const sortedArr2 = [...arr2].sort();
 
-  // Stringni har bir belgisi bo'yicha aylanamiz
-  for (let i = 0; i < input.length; i++) {
-      let char = input[i];
-      
-      // Agar ochuvchi qavs bo'lsa, openCount ni oshiramiz
-      if (char === '(') {
-          openCount++;
-      }
-      // Agar yopuvchi qavs bo'lsa, closeCount ni oshiramiz
-      else if (char === ')') {
-          closeCount++;
-      }
-  }
+    // Arraylar uzunligini tekshiramiz
+    if (sortedArr1.length !== sortedArr2.length) {
+        return false;
+    }
 
-  // Agar ochuvchi va yopuvchi qavslar soni bir xil bo'lsa, true qaytaradi
-  return openCount === closeCount;
+    // Array ichidagi barcha elementlarni tekshiramiz
+    for (let i = 0; i < sortedArr1.length; i++) {
+        if (sortedArr1[i] !== sortedArr2[i]) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
-const natija = areParenthesesBalanced("string()ichida(qavslar)soni()balansda");
-console.log(natija); // true
+console.log(areArraysEqual([1, 2, 3], [3, 1, 2])); // true
+console.log(areArraysEqual([1, 2, 3], [3, 1, 2, 1])); // false
+console.log(areArraysEqual([1, 2, 3], [4, 1, 2])); // false
 
 
 
 // ==============================================================
-// ------------------------ ZO-TASK stop -------------------------
+// ------------------------ ZP-TASK stop -------------------------
 // ==============================================================
