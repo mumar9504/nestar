@@ -1,50 +1,54 @@
 console.log("TRAIN AREA!");
 
 // ==============================================================
-// ----------------------- ZP-TASK start -------------------------
+// ----------------------- ZQ-TASK start -------------------------
 // ==============================================================
 
-// 2024-08-30
+// 2024-09-01
 // MIT 14
 
-// TASK ZP:
+// TASK ZQ:
 
-// shunday function yozing, u 2 ta array parametr qabul qilsin.
-// Siz bu ikki arrayning qiymatlari o'xshash bo'lishini 
-// (ya'ni, ularning barcha elementlari bir xil bo'lishini) tekshirishingiz kerak.
+// Shunday function yozing, bu function berilgan array parametr
+// ichida ikki marotaba yoki undan ko'p takrorlangan sonlarni alohida
+// array'da yagonadan qaytarsin.
 
-// MASALAN:
-// areArraysEqual([1, 2, 3], [3, 1, 2]) // true
-// areArraysEqual([1, 2, 3], [3, 1, 2, 1]) // false
-// areArraysEqual([1, 2, 3], [4, 1, 2]) // false
+// MASALAN: findDuplicates([1,2,3,4,5,4,3,4]); return [3, 4];
 
 
-function areArraysEqual(arr1: number[], arr2: number[]): boolean {
-    // Arraylarni nusxasini olish uchun va ularga ta'sir qilmaslik uchun [...arr] yordamida nusxa olamiz
-    const sortedArr1 = [...arr1].sort();
-    const sortedArr2 = [...arr2].sort();
 
-    // Arraylar uzunligini tekshiramiz
-    if (sortedArr1.length !== sortedArr2.length) {
-        return false;
-    }
+function findDuplicates(arr: number[]): number[] {
+    // Elementlarni va ularning sonini saqlash uchun obyekt yaratamiz
+    const elementCount: { [key: number]: number } = {};
 
-    // Array ichidagi barcha elementlarni tekshiramiz
-    for (let i = 0; i < sortedArr1.length; i++) {
-        if (sortedArr1[i] !== sortedArr2[i]) {
-            return false;
+    // Har bir elementni sanaymiz va obyektga qo'shamiz
+    for (let i = 0; i < arr.length; i++) {
+        const num = arr[i];
+        if (elementCount[num]) {
+            elementCount[num]++;
+        } else {
+            elementCount[num] = 1;
         }
     }
 
-    return true;
+    // Takrorlangan elementlarni saqlash uchun bo'sh array yaratamiz
+    const duplicates: number[] = [];
+
+    // Obyekt ichidan takrorlangan elementlarni qidiramiz
+    for (let key in elementCount) {
+        if (elementCount[key] > 1) {
+            duplicates.push(parseInt(key));
+        }
+    }
+
+    return duplicates;
 }
 
-console.log(areArraysEqual([1, 2, 3], [3, 1, 2])); // true
-console.log(areArraysEqual([1, 2, 3], [3, 1, 2, 1])); // false
-console.log(areArraysEqual([1, 2, 3], [4, 1, 2])); // false
-
+console.log(findDuplicates([1, 2, 3, 4, 5, 4, 3, 4])); // [3, 4]
+console.log(findDuplicates([10, 20, 20, 30, 40, 50, 50])); // [20, 50]
+console.log(findDuplicates([1, 3, 5])); // []
 
 
 // ==============================================================
-// ------------------------ ZP-TASK stop -------------------------
+// ------------------------ ZQ-TASK stop -------------------------
 // ==============================================================
