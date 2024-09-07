@@ -4,9 +4,7 @@ import { BoardArticleService } from './board-article.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import BoardArticleSchema from '../../schemas/BoardArticle.model';
 import { AuthModule } from '../auth/auth.module';
-import { Member } from '../../libs/dto/member/member';
 import { MemberModule } from '../member/member.module';
-import { View } from '../../libs/dto/view/view';
 import { ViewModule } from '../view/view.module';
 
 @Module({

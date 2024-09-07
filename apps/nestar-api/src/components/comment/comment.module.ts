@@ -19,7 +19,7 @@ import { BoardArticleModule } from '../board-article/board-article.module';
 		AuthModule,
 		MemberModule,
     PropertyModule,
-    BoardArticleModule,
+    BoardArticleModule
   ],
   providers: [CommentResolver, CommentService]
 })
