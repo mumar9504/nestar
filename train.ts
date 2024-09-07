@@ -1,54 +1,49 @@
 console.log("TRAIN AREA!");
 
 // ==============================================================
-// ----------------------- ZQ-TASK start -------------------------
+// ----------------------- ZR-TASK start -------------------------
 // ==============================================================
 
-// 2024-09-01
+// 2024-09-06
 // MIT 14
 
-// TASK ZQ:
+// TASK ZR:
 
-// Shunday function yozing, bu function berilgan array parametr
-// ichida ikki marotaba yoki undan ko'p takrorlangan sonlarni alohida
-// array'da yagonadan qaytarsin.
+// Shunday function yozing, bu function,
+// berilgan parametr string tarkibidagi raqam va sonlarni
+// sanab object sifatida qaytarsin.
 
-// MASALAN: findDuplicates([1,2,3,4,5,4,3,4]); return [3, 4];
+// MASALAN: countNumberAndLetters(“string152%\¥”); return {number: 3, letter: 6};
 
 
-
-function findDuplicates(arr: number[]): number[] {
-    // Elementlarni va ularning sonini saqlash uchun obyekt yaratamiz
-    const elementCount: { [key: number]: number } = {};
-
-    // Har bir elementni sanaymiz va obyektga qo'shamiz
-    for (let i = 0; i < arr.length; i++) {
-        const num = arr[i];
-        if (elementCount[num]) {
-            elementCount[num]++;
-        } else {
-            elementCount[num] = 1;
-        }
+function countNumberAndLetters(input: string): { number: number, letter: number } {
+    // Harflar va raqamlar uchun sanash o'zgaruvchilarini boshlaymiz
+    let numberCount = 0;
+    let letterCount = 0;
+  
+    // Inputdagi har bir belgi uchun tekshiramiz
+    for (let i = 0; i < input.length; i++) {
+      let char = input[i];
+  
+      // Agar belgi raqam bo'lsa, raqamni sanovchi o'zgaruvchini oshiramiz
+      if (char >= '0' && char <= '9') {
+        numberCount++;
+      }
+      // Agar belgi harf bo'lsa, harfni sanovchi o'zgaruvchini oshiramiz
+      else if ((char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z')) {
+        letterCount++;
+      }
     }
-
-    // Takrorlangan elementlarni saqlash uchun bo'sh array yaratamiz
-    const duplicates: number[] = [];
-
-    // Obyekt ichidan takrorlangan elementlarni qidiramiz
-    for (let key in elementCount) {
-        if (elementCount[key] > 1) {
-            duplicates.push(parseInt(key));
-        }
-    }
-
-    return duplicates;
-}
-
-console.log(findDuplicates([1, 2, 3, 4, 5, 4, 3, 4])); // [3, 4]
-console.log(findDuplicates([10, 20, 20, 30, 40, 50, 50])); // [20, 50]
-console.log(findDuplicates([1, 3, 5])); // []
+  
+    // Natijani object shaklida qaytaramiz
+    return { number: numberCount, letter: letterCount };
+  }
+  
+  console.log(countNumberAndLetters("string152%\¥")); 
+  // { number: 3, letter: 6 }
+  
 
 
 // ==============================================================
-// ------------------------ ZQ-TASK stop -------------------------
+// ------------------------ ZR-TASK stop -------------------------
 // ==============================================================
