@@ -1,49 +1,52 @@
 console.log("TRAIN AREA!");
 
 // ==============================================================
-// ----------------------- ZR-TASK start -------------------------
+// ----------------------- ZS-TASK start -------------------------
 // ==============================================================
 
-// 2024-09-06
+// 2024-09-07
 // MIT 14
 
-// TASK ZR:
+// TASK ZS:
 
-// Shunday function yozing, bu function,
-// berilgan parametr string tarkibidagi raqam va sonlarni
-// sanab object sifatida qaytarsin.
+// Shunday function yozing, bu function parametrdagi array ichida
+// bir marotaba takrorlangan element'ni qaytarsin
 
-// MASALAN: countNumberAndLetters(“string152%\¥”); return {number: 3, letter: 6};
+// MASALAN: singleNumber([4, 2, 1, 2, 1]); return 4;
 
 
-function countNumberAndLetters(input: string): { number: number, letter: number } {
-    // Harflar va raqamlar uchun sanash o'zgaruvchilarini boshlaymiz
-    let numberCount = 0;
-    let letterCount = 0;
-  
-    // Inputdagi har bir belgi uchun tekshiramiz
-    for (let i = 0; i < input.length; i++) {
-      let char = input[i];
-  
-      // Agar belgi raqam bo'lsa, raqamni sanovchi o'zgaruvchini oshiramiz
-      if (char >= '0' && char <= '9') {
-        numberCount++;
-      }
-      // Agar belgi harf bo'lsa, harfni sanovchi o'zgaruvchini oshiramiz
-      else if ((char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z')) {
-        letterCount++;
-      }
+function singleNumber(arr: number[]): number | undefined {
+  // Har bir elementni necha marta uchrayotganini sanash uchun obyekt yaratamiz
+  let countMap: { [key: number]: number } = {};
+
+  // Har bir elementni sanaymiz va obyekt ichiga yozamiz
+  for (let i = 0; i < arr.length; i++) {
+    let num = arr[i];
+    // Agar element avval sanalgan bo'lsa, qiymatini oshiramiz
+    if (countMap[num]) {
+      countMap[num]++;
+    } 
+    // Agar sanalmagan bo'lsa, uni 1 ga teng qilib qo'yamiz
+    else {
+      countMap[num] = 1;
     }
-  
-    // Natijani object shaklida qaytaramiz
-    return { number: numberCount, letter: letterCount };
   }
-  
-  console.log(countNumberAndLetters("string152%\¥")); 
-  // { number: 3, letter: 6 }
-  
+
+  // Endi bir marotaba takrorlangan elementni topamiz
+  for (let num in countMap) {
+    if (countMap[num] === 1) {
+      return parseInt(num); // elementni son sifatida qaytarish
+    }
+  }
+
+  // Agar hech narsa topilmasa undefined qaytadi
+  return undefined;
+}
+
+console.log(singleNumber([4, 2, 1, 2, 1])); 
+// 4
 
 
 // ==============================================================
-// ------------------------ ZR-TASK stop -------------------------
+// ------------------------ ZS-TASK stop -------------------------
 // ==============================================================
