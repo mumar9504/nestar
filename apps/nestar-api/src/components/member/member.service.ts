@@ -105,7 +105,6 @@ export class MemberService {
 
 			// meFollowed
 			targetMember.meFollowed = await this.checkSubscription(memberId, targetId);
-
 		}
 		return targetMember;
 	}
@@ -130,7 +129,11 @@ export class MemberService {
 				{ $sort: sort },
 				{
 					$facet: {
-						list: [{ $skip: (input.page - 1) * input.limit }, { $limit: input.limit }],
+						list: [
+							{ $skip: (input.page - 1) * input.limit },
+							{ $limit: input.limit },
+							// meLiked
+						],
 						metaCounter: [{ $count: 'total' }],
 					},
 				},
@@ -145,10 +148,10 @@ export class MemberService {
 		const target: Member = await this.memberModel.findOne({ _id: likeRefId, memberStatus: MemberStatus.ACTIVE }).exec();
 		if (!target) throw new InternalServerErrorException(Message.NO_DATA_FOUND);
 
-		const input: LikeInput = { 
-			memberId: memberId, 
-			likeRefId: likeRefId, 
-			likeGroup: LikeGroup.MEMBER 
+		const input: LikeInput = {
+			memberId: memberId,
+			likeRefId: likeRefId,
+			likeGroup: LikeGroup.MEMBER,
 		};
 
 		const modifier: number = await this.likeService.toggleLike(input);
