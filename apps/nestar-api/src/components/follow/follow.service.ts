@@ -3,14 +3,12 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId } from 'mongoose';
 import { Follower, Followers, Following, Followings } from '../../libs/dto/follow/follow';
 import { MemberService } from '../member/member.service';
-import { Int } from '@nestjs/graphql';
 import { Direction, Message } from '../../libs/enums/common.enum';
-import { register } from 'module';
 import { FollowInquiry } from '../../libs/dto/follow/follow.input';
 import { T } from '../../libs/types/common';
 import {
-	lookAuthMemberFollowed,
-	lookAuthMemberLiked,
+	lookupAuthMemberLiked,
+	lookupAuthMemberFollowed,
 	lookupFollowerData,
 	lookupFollowingData,
 } from '../../libs/config';
@@ -84,9 +82,9 @@ export class FollowService {
 							{ $skip: (page - 1) * limit },
 							{ $limit: limit },
 							// meLiked
-							lookAuthMemberLiked(memberId, '$followingId'),
+							lookupAuthMemberLiked(memberId, '$followingId'),
 							// meFollowed
-							lookAuthMemberFollowed({
+							lookupAuthMemberFollowed({
 								followerId: memberId,
 								followingId: '$followingId',
 							}),
@@ -120,9 +118,9 @@ export class FollowService {
 							{ $skip: (page - 1) * limit },
 							{ $limit: limit },
 							// meLiked
-							lookAuthMemberLiked(memberId, '$followerId'),
+							lookupAuthMemberLiked(memberId, '$followerId'),
 							// meFollowed
-							lookAuthMemberFollowed({
+							lookupAuthMemberFollowed({
 								followerId: memberId,
 								followingId: '$followerId',
 							}),
