@@ -1,52 +1,57 @@
 console.log("TRAIN AREA!");
 
 // ==============================================================
-// ----------------------- ZS-TASK start -------------------------
+// ----------------------- ZT-TASK start -------------------------
 // ==============================================================
 
-// 2024-09-07
+// 2024-09-11
 // MIT 14
 
-// TASK ZS:
+// TASK ZT:
 
-// Shunday function yozing, bu function parametrdagi array ichida
-// bir marotaba takrorlangan element'ni qaytarsin
+// Shunday function yozing, bu function parametrdagi string ichida
+// bir marotabadan ortiq qaytarilmagan birinchi harf indeksini qaytarsin
 
-// MASALAN: singleNumber([4, 2, 1, 2, 1]); return 4;
+// MASALAN: firstUniqueCharIndex(“stamp”); return 0;
+
+// Yuqoridagi misolda, 'stamp' so'zi tarkibida barcha harflar bir marotabadan
+// ortiq takrorlanmagan, lekin shartga muvofiq, birinchi topilgan harf indeksi qaytarilmoqda.
 
 
-function singleNumber(arr: number[]): number | undefined {
-  // Har bir elementni necha marta uchrayotganini sanash uchun obyekt yaratamiz
-  let countMap: { [key: number]: number } = {};
+function firstUniqueCharIndex(str: string): number {
+  // Harflarni va ularning qancha marta uchraganini saqlash uchun obyekt yaratamiz
+  let charCount: { [key: string]: number } = {};
 
-  // Har bir elementni sanaymiz va obyekt ichiga yozamiz
-  for (let i = 0; i < arr.length; i++) {
-    let num = arr[i];
-    // Agar element avval sanalgan bo'lsa, qiymatini oshiramiz
-    if (countMap[num]) {
-      countMap[num]++;
+  // Avval stringdagi har bir belgini sanaymiz
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+    // Agar belgi avval mavjud bo'lsa, qiymatini oshiramiz
+    if (charCount[char]) {
+      charCount[char]++;
     } 
-    // Agar sanalmagan bo'lsa, uni 1 ga teng qilib qo'yamiz
+    // Agar mavjud bo'lmasa, 1 ga teng qilib qo'yamiz
     else {
-      countMap[num] = 1;
+      charCount[char] = 1;
     }
   }
 
-  // Endi bir marotaba takrorlangan elementni topamiz
-  for (let num in countMap) {
-    if (countMap[num] === 1) {
-      return parseInt(num); // elementni son sifatida qaytarish
+  // Endi stringni yana bir marta ko'rib chiqamiz va bir martagina uchragan birinchi belgini topamiz
+  for (let i = 0; i < str.length; i++) {
+    if (charCount[str[i]] === 1) {
+      return i; // bir martagina uchragan birinchi belgini indeksini qaytaramiz
     }
   }
 
-  // Agar hech narsa topilmasa undefined qaytadi
-  return undefined;
+  // Agar bunday belgi bo'lmasa -1 qiymatini qaytaramiz
+  return -1;
 }
 
-console.log(singleNumber([4, 2, 1, 2, 1])); 
-// 4
+console.log(firstUniqueCharIndex("stamp")); // 0 (birinchi belgi 's', va uning indeksi 0)
+console.log(firstUniqueCharIndex("aapple")); // 4 (bir martagina uchragan 1-belgi 'l', va uning indeksi 4)
+
+
 
 
 // ==============================================================
-// ------------------------ ZS-TASK stop -------------------------
+// ------------------------ ZT-TASK stop -------------------------
 // ==============================================================
