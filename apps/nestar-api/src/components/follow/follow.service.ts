@@ -8,7 +8,12 @@ import { Direction, Message } from '../../libs/enums/common.enum';
 import { register } from 'module';
 import { FollowInquiry } from '../../libs/dto/follow/follow.input';
 import { T } from '../../libs/types/common';
-import { lookAuthMemberLiked, lookupFollowerData, lookupFollowingData } from '../../libs/config';
+import {
+	lookAuthMemberFollowed,
+	lookAuthMemberLiked,
+	lookupFollowerData,
+	lookupFollowingData,
+} from '../../libs/config';
 
 @Injectable()
 export class FollowService {
@@ -81,6 +86,10 @@ export class FollowService {
 							// meLiked
 							lookAuthMemberLiked(memberId, '$followingId'),
 							// meFollowed
+							lookAuthMemberFollowed({
+								followerId: memberId,
+								followingId: '$followingId',
+							}),
 							lookupFollowingData,
 							{ $unwind: '$followingData' },
 						],
@@ -113,6 +122,10 @@ export class FollowService {
 							// meLiked
 							lookAuthMemberLiked(memberId, '$followerId'),
 							// meFollowed
+							lookAuthMemberFollowed({
+								followerId: memberId,
+								followingId: '$followerId',
+							}),
 							lookupFollowerData,
 							{ $unwind: '$followerData' },
 						],
