@@ -18,7 +18,7 @@ import { LikeModule } from '../like/like.module';
 		]),
 		AuthModule,
 		ViewModule,
-		MemberModule,
+		MemberModule, 
 		LikeModule
 	],
 	providers: [PropertyResolver, PropertyService],
