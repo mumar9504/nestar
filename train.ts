@@ -1,57 +1,57 @@
 console.log("TRAIN AREA!");
 
 // ==============================================================
-// ----------------------- ZT-TASK start -------------------------
+// ----------------------- ZU-TASK start -------------------------
 // ==============================================================
 
-// 2024-09-11
+// 2024-09-13
+
 // MIT 14
+// TASK ZU:
 
-// TASK ZT:
+// Shunday function yozing, va bu function parametr sifatida
+// raqamlardan iborat array'ni qabul qilsin. Function'ning vazifasi,
+// berilgan parametr array tarkibida takrorlanmagan raqamlarni topib
+// ularni yig'indisini qaytarsin.
 
-// Shunday function yozing, bu function parametrdagi string ichida
-// bir marotabadan ortiq qaytarilmagan birinchi harf indeksini qaytarsin
+// MASALAN: sumOfUnique([1,2,3,2]); return 4;
 
-// MASALAN: firstUniqueCharIndex(“stamp”); return 0;
-
-// Yuqoridagi misolda, 'stamp' so'zi tarkibida barcha harflar bir marotabadan
-// ortiq takrorlanmagan, lekin shartga muvofiq, birinchi topilgan harf indeksi qaytarilmoqda.
+// Yuqoridagi misolda, argument sifatida pass qilinayotgan array
+// tarkibida bir marotabadan ortiq takrorlanmagan raqamlar, bular '1', '3'.
+// Va natija sifatida yig'indi 4'ga teng.
 
 
-function firstUniqueCharIndex(str: string): number {
-  // Harflarni va ularning qancha marta uchraganini saqlash uchun obyekt yaratamiz
-  let charCount: { [key: string]: number } = {};
+function sumOfUnique(nums: number[]): number {
+  // Har bir raqamning necha marta uchrashganligini hisoblash uchun obyekt yaratamiz
+  let countMap: { [key: number]: number } = {};
 
-  // Avval stringdagi har bir belgini sanaymiz
-  for (let i = 0; i < str.length; i++) {
-    let char = str[i];
-    // Agar belgi avval mavjud bo'lsa, qiymatini oshiramiz
-    if (charCount[char]) {
-      charCount[char]++;
-    } 
-    // Agar mavjud bo'lmasa, 1 ga teng qilib qo'yamiz
-    else {
-      charCount[char] = 1;
-    }
+  // Arraydagi har bir raqamni aylantirib chiqamiz va ularning necha marta takrorlanishini hisoblaymiz
+  for (let num of nums) {
+      if (countMap[num]) {
+          countMap[num]++;
+      } else {
+          countMap[num] = 1;
+      }
   }
 
-  // Endi stringni yana bir marta ko'rib chiqamiz va bir martagina uchragan birinchi belgini topamiz
-  for (let i = 0; i < str.length; i++) {
-    if (charCount[str[i]] === 1) {
-      return i; // bir martagina uchragan birinchi belgini indeksini qaytaramiz
-    }
+  // Takrorlanmagan raqamlarning yig'indisini saqlash uchun o'zgaruvchi yaratamiz
+  let sum = 0;
+
+  // countMap'dan faqat bitta marta uchragan raqamlarni yig'ib chiqamiz
+  for (let num in countMap) {
+      if (countMap[num] === 1) {
+          sum += parseInt(num); // num string ko'rinishida bo'lishi mumkin, shuning uchun uni raqamga aylantiramiz
+      }
   }
 
-  // Agar bunday belgi bo'lmasa -1 qiymatini qaytaramiz
-  return -1;
+  // Yig'indini qaytaramiz
+  return sum;
 }
 
-console.log(firstUniqueCharIndex("stamp")); // 0 (birinchi belgi 's', va uning indeksi 0)
-console.log(firstUniqueCharIndex("aapple")); // 4 (bir martagina uchragan 1-belgi 'l', va uning indeksi 4)
-
+console.log(sumOfUnique([1, 2, 3, 2])); // Natija: 4
 
 
 
 // ==============================================================
-// ------------------------ ZT-TASK stop -------------------------
+// ------------------------ ZU-TASK stop -------------------------
 // ==============================================================
