@@ -32,7 +32,7 @@ export class FollowResolver {
 	@UseGuards(WithoutGuard)
 	@Mutation((returns) => Followings)
 	public async getMemberFollowings(
-		@Args('intut') input: FollowInquiry,
+		@Args('input') input: FollowInquiry,
 		@AuthMember('_id') memberId: ObjectId,
 	): Promise<Followings> {
 		console.log('Mutation: getMemberFollowings');
@@ -44,7 +44,7 @@ export class FollowResolver {
 	@UseGuards(WithoutGuard)
 	@Mutation((returns) => Followers)
 	public async getMemberFollowers(
-		@Args('intut') input: FollowInquiry,
+		@Args('input') input: FollowInquiry,
 		@AuthMember('_id') memberId: ObjectId,
 	): Promise<Followers> {
 		console.log('Mutation: getMemberFollowers');
